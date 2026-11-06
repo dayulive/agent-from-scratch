@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+*.log
+memory-data/
+chroma-data/
+checkpoints/
+test-results/
+coverage/
+*.db
+.DS_Store

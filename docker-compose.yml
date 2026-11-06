@@ -1,0 +1,36 @@
+services:
+  agent:
+    build: .
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      OPENAI_API_KEY: "${OPENAI_API_KEY:-}"
+      ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY:-}"
+      LLM_PROVIDER: "${LLM_PROVIDER:-openai}"
+      LLM_MODEL: "${LLM_MODEL:-gpt-4o}"
+      PORT: "3000"
+      HOST: "0.0.0.0"
+      SANDBOX_BACKEND: "${SANDBOX_BACKEND:-local}"
+      SANDBOX_NETWORK_ENABLED: "false"
+      SANDBOX_WORK_DIR: "/app/memory-data/workspace"
+      SAFETY_ALLOW_LOCAL: "true"
+      MEMORY_DATA_DIR: "/app/memory-data"
+      CHECKPOINT_PATH: "/app/checkpoints/agent-state.db"
+      LANGFUSE_PUBLIC_KEY: "${LANGFUSE_PUBLIC_KEY:-}"
+      LANGFUSE_SECRET_KEY: "${LANGFUSE_SECRET_KEY:-}"
+      LANGFUSE_BASE_URL: "${LANGFUSE_BASE_URL:-https://cloud.langfuse.com}"
+    volumes:
+      - memory-data:/app/memory-data
+      - checkpoints:/app/checkpoints
+    tmpfs:
+      - /tmp
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+
+volumes:
+  memory-data:
+  checkpoints:

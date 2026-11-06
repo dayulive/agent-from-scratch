@@ -1,0 +1,59 @@
+{
+  "name": "agent-from-scratch",
+  "version": "1.0.0",
+  "description": "从零构建一个生产级命令行 AI Agent——20 期系列完整代码",
+  "type": "module",
+  "main": "dist/server/index.js",
+  "bin": {
+    "agent": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/cli.ts",
+    "start": "node dist/server/index.js",
+    "cli": "tsx src/cli.ts",
+    "lint": "eslint src/ tests/",
+    "test": "vitest run",
+    "evaluate": "tsx src/evaluation/run-suite.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^1.0.0",
+    "@ai-sdk/openai": "^1.0.0",
+    "@ai-sdk/provider": "^1.0.0",
+    "@langchain/langgraph": "^0.2.0",
+    "@langchain/langgraph-checkpoint-sqlite": "^0.1.0",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "ai": "^4.0.0",
+    "chalk": "^5.3.0",
+    "chromadb": "^1.8.0",
+    "commander": "^12.0.0",
+    "dockerode": "^4.0.0",
+    "fastify": "^5.0.0",
+    "langfuse": "^3.0.0",
+    "pino-pretty": "^11.0.0",
+    "screenshot-desktop": "^1.15.0",
+    "sharp": "^0.33.0",
+    "tiktoken": "^1.0.0",
+    "uuid": "^10.0.0",
+    "zod": "^3.23.0",
+    "zod-to-json-schema": "^3.23.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/dockerode": "^3.3.0",
+    "@types/node": "^22.0.0",
+    "@types/uuid": "^10.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "overrides": {
+    "better-sqlite3": "12.11.1"
+  }
+}
